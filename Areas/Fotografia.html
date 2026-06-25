@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fotografía Cinematográfica · IADC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    /* MANTENIENDO TUS COLORES EXACTOS */
+    :root {
+      --naranja: #FF9843;
+      --gris:    #757F82;
+      --oscuro:  #293132;
+      --negro:   #201E1E;
+      --blanco:  #f5f2ec; /* Tu color de fondo claro premium */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+    body { font-family: var(--font-body); background: var(--blanco); color: var(--negro); }
+
+    /* HEADER CON IMAGEN DE FONDO DETRÁS */
+    .area-header {
+      min-height: 55vh; position: relative;
+      display: flex; align-items: flex-end; 
+      padding: 40px 80px 64px 80px;
+      background: var(--negro); overflow: hidden;
+    }
+    .area-header-bg {
+      position: absolute; inset: 0;
+      /* Capa oscura de opacidad para que tus textos se sigan leyendo con un contraste perfecto */
+      background-image: linear-gradient(135deg, rgba(14, 14, 14, 0.88) 0%, rgba(32, 30, 30, 0.82) 100%), url('./img/Fotografia.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 1;
+    }
+    .area-header-content { position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto; }
+    
+    /* EL NUEVO BOTÓN VOLVER: MÁS GRANDE, LLAMATIVO Y ENMARCADO */
+    .area-volver {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff; /* Blanco para máxima lectura sobre la foto */
+      background: rgba(255, 152, 67, 0.15); /* Fondo naranja translúcido */
+      border: 1px solid rgba(255, 152, 67, 0.4); /* Borde naranja delimitado */
+      padding: 12px 26px; /* Relleno expandido para que se sienta como un botón imponente */
+      border-radius: 4px;
+      text-decoration: none;
+      position: absolute;
+      top: -140px; /* Lo sube elegantemente al extremo superior */
+      left: 0;
+      transition: all .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: 10;
+    }
+
+    /* Efecto interactivo premium al pasar el mouse */
+    .area-volver:hover {
+      color: var(--negro);
+      background: var(--naranja); /* Se rellena completamente con tu naranja sólido */
+      border-color: var(--naranja);
+      transform: translateX(-6px); /* Pequeño desplazamiento dinámico hacia la izquierda */
+      box-shadow: 0 4px 15px rgba(255, 152, 67, 0.35);
+    }
+    
+    .area-eyebrow { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--naranja); margin-bottom: 24px; font-weight: 500; }
+    
+    /* TÍTULO GRANDE CON LA "Y" CORREGIDA EN TEXTO PLANO */
+    .area-header h1 {
+      font-family: var(--font-display); 
+      font-size: clamp(44px, 7vw, 92px);
+      color: #FF9843;
+      font-weight: 900; line-height: 1.0; margin-bottom: 28px;
+      letter-spacing: -1px;
+    }
+    .area-header p { 
+      font-size: 19px; 
+      color: rgb(245, 242, 236); 
+      max-width: 720px; 
+      line-height: 1.7; font-weight: 300; 
+    }
+
+    /* PLAN DE ESTUDIOS INTERNO DE ANCHO COMPLETO */
+    .materias-section { background: var(--oscuro); padding: 100px 80px; }
+    .materias-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1.3fr; gap: 100px; align-items: start; }
+    .mat-label { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--naranja); margin-bottom: 24px; font-weight: 500; }
+    .materias-section h2 { font-family: var(--font-display); font-size: clamp(38px, 4vw, 56px); color: #FF9843; margin-bottom: 28px; line-height: 1.1; }
+    .materias-section p { font-size: 17px; color: rgba(245, 242, 236, 0.65); line-height: 1.8; font-weight: 300; }
+    
+    /* FILAS DE MATERIAS AMPLIADAS */
+    .mat-lista { list-style: none; display: flex; flex-direction: column; gap: 12px; width: 100%; }
+    .mat-lista li {
+      font-size: 16px; color: rgba(245, 242, 236, 0.85); padding: 18px 24px;
+      background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,.06); border-radius: 6px;
+      display: flex; align-items: center; gap: 14px; transition: all .25s ease;
+    }
+    .mat-lista li:hover { border-color: rgba(255,152,67,.4); background: rgba(255, 152, 67, 0.03); padding-left: 32px; }
+    .mat-lista li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--naranja); flex-shrink: 0; }
+
+    /* FOOTER INTEGRADO CON TU COLOR NEGRO */
+    .area-footer { background: var(--negro); padding: 40px 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.05); }
+    .area-footer p { font-size: 14px; color: rgba(245,242,236,.3); }
+    
+    /* El botón de regreso inferior también hereda el estilo llamativo */
+    .area-footer .btn-footer-volver {
+      font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--naranja); text-decoration: none;
+      border: 1px solid var(--naranja); padding: 10px 20px; border-radius: 4px; transition: all 0.2s;
+    }
+    .area-footer .btn-footer-volver:hover { background: var(--naranja); color: var(--negro); }
+
+    /* Optimización para celulares */
+    
+    @media (max-width: 992px) {
+      .area-header { padding: 32px 32px 48px; }
+      .materias-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    @media (max-width: 768px) {
+      .area-header { padding: 24px 20px 40px; min-height: 60vh; }
+      .area-header h1 { font-size: clamp(38px, 12vw, 64px); margin-bottom: 16px; letter-spacing: -0.5px; }
+      .area-header p { font-size: 15px; line-height: 1.6; }
+      .area-eyebrow { font-size: 10px; letter-spacing: 3px; margin-bottom: 12px; }
+      .area-volver { position: relative !important; top: 0 !important; left: 0 !important; display: inline-flex !important; margin-bottom: 28px; font-size: 12px; padding: 10px 18px; }
+      .materias-section { padding: 48px 20px; }
+      .materias-inner { grid-template-columns: 1fr; gap: 36px; }
+      .materias-section h2 { font-size: clamp(28px, 8vw, 40px); margin-bottom: 16px; }
+      .materias-section p { font-size: 15px; }
+      .mat-lista li { font-size: 14px; padding: 14px 16px; }
+      .mat-lista li:hover { padding-left: 22px; }
+      .area-footer { padding: 28px 20px; flex-direction: column; gap: 14px; text-align: center; }
+      .area-footer p { font-size: 12px; }
+    }
+
+    @media (max-width: 420px) {
+      .area-header { min-height: 50vh; }
+      .area-header h1 { font-size: clamp(32px, 11vw, 52px); }
+    }
+      .area-volver { position: relative; top: 0; margin-bottom: 32px; display: inline-flex; }
+      .materias-section { padding: 60px 40px; }
+      .materias-inner { grid-template-columns: 1fr; gap: 48px; }
+      .area-footer { padding: 32px 40px; flex-direction: column; gap: 16px; text-align: center; }
+    
+      /* ── CURSOR INTERACTIVO PREMIUM PERSONALIZADO ── */
+    @media (hover: hover) and (pointer: fine) {
+      * { cursor: none !important; }
+      #cursor-punto {
+        position: fixed; pointer-events: none; z-index: 9999;
+        width: 8px; height: 8px; border-radius: 50%;
+        background: var(--naranja);
+        transform: translate(-50%, -50%);
+        transition: width .18s ease, height .18s ease, background .18s ease, opacity .18s ease;
+        will-change: left, top;
+        left: -100px; top: -100px;
+      }
+      #cursor-halo {
+        position: fixed; pointer-events: none; z-index: 9998;
+        width: 38px; height: 38px; border-radius: 50%;
+        border: 1.5px solid rgba(255,152,67,.55);
+        transform: translate(-50%, -50%);
+        transition: width .32s ease, height .32s ease, opacity .32s ease, border-color .2s ease;
+        will-change: left, top;
+        left: -100px; top: -100px;
+      }
+      body.cursor-hover #cursor-punto { width: 10px; height: 10px; }
+      body.cursor-hover #cursor-halo  { width: 58px; height: 58px; opacity: .35; }
+      body.cursor-click #cursor-punto { width: 5px; height: 5px; opacity: .7; }
+      body.cursor-click #cursor-halo  { width: 20px; height: 20px; border-color: rgba(255,152,67,.9); }
+    }
+  </style>
+</head>
+<body>
+<body>
+  <!-- ELEMENTOS DEL CURSOR PERSONALIZADO -->
+  <div id="cursor-punto"></div>
+  <div id="cursor-halo"></div>
+  <header class="area-header">
+    <div class="area-header-bg"></div>
+    <div class="area-header-content">
+      <a href="../index.html#areas" class="area-volver">← Volver a inicio</a>
+      <p class="area-eyebrow">Área de estudio · IADC</p>
+      <h1>Fotografía<br>y Cine</h1>
+      <p>Estudio integral del lenguaje de la luz, composición avanzada y narrativa cinematográfica. Domina esquemas de iluminación profesional, dirección de arte digital y la captura técnica de alta fidelidad.</p>
+    </div>
+  </header>
+
+  <section class="materias-section">
+    <div class="materias-inner">
+      <div>
+        <p class="mat-label">Plan de estudios</p>
+        <h2>Narrativa Visual</h2>
+        <p>Aprende a contar historias mediante la potencia expresiva de la cámara. Desde los principios técnicos de exposición y óptica, hasta la edición sutil de esquemas complejos y montaje audiovisual profesional.</p>
+      </div>
+      
+      <ul class="mat-lista">
+        <li>Lenguaje audiovisual y teoría del montaje cinematográfico</li>
+        <li>Esquemas avanzados de iluminación y dirección de arte</li>
+        <li>Técnicas de composición, encuadre y estética de la imagen</li>
+        <li>Fotografía e iluminación en estudio profesional</li>
+        <li>Post-producción digital, corrección de color y flujo HDR</li>
+        <li>Producción y realización cinematográfica para proyectos multimedia</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="area-footer">
+    <p>© 2026 IADC · Pablo Guardado Chávez · Tuxtla Gutiérrez, Chiapas</p>
+    <a href="../index.html#areas" class="btn-footer-volver">← Volver al inicio</a>
+  </div>
+<!-- SCRIPT DEL CURSOR INTERACTIVO PREMIUM -->
+  <script>
+    (function () {
+      const punto = document.getElementById('cursor-punto');
+      const halo  = document.getElementById('cursor-halo');
+      if (!punto || !halo) return;
+
+      let mx = -100, my = -100;
+      let hx = -100, hy = -100;
+      let raf;
+
+      // Seguimiento de coordenadas del mouse
+      document.addEventListener('mousemove', function (e) {
+        mx = e.clientX; my = e.clientY;
+        punto.style.left = mx + 'px';
+        punto.style.top  = my + 'px';
+      });
+
+      // Animación del halo con retraso inercial fluido
+      function animarHalo() {
+        hx += (mx - hx) * 0.11;
+        hy += (my - hy) * 0.11;
+        halo.style.left = hx + 'px';
+        halo.style.top  = hy + 'px';
+        raf = requestAnimationFrame(animarHalo);
+      }
+      animarHalo();
+
+      // Detectar elementos interactivos para expandir el cursor
+      const interactivos = 'a, button, .foto, .area-card, .lab-foto, input, textarea, select, [onclick], .selector-btn, .visor-btn';
+      
+      function actualizarListeners() {
+        document.querySelectorAll(interactivos).forEach(function(el) {
+          el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+          el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+        });
+      }
+      actualizarListeners();
+      
+      // Mutación observada por si cambias componentes dinámicamente
+      const observer = new MutationObserver(actualizarListeners);
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      // Efectos de clics mecánicos
+      document.addEventListener('mousedown', function() {
+        document.body.classList.add('cursor-click');
+        document.body.classList.remove('cursor-hover');
+      });
+      document.addEventListener('mouseup', function() {
+        document.body.classList.remove('cursor-click');
+      });
+
+      // Mostrar/Ocultar cursor si sale de la ventana del navegador
+      document.addEventListener('mouseleave', function() {
+        punto.style.opacity = '0'; halo.style.opacity = '0';
+      });
+      document.addEventListener('mouseenter', function() {
+        punto.style.opacity = '1'; halo.style.opacity = '1';
+      });
+
+      // COMPATIBILIDAD CON VISOR 3D (Si existe el lienzo de Three.js en la página)
+      const canvas3D = document.getElementById('visor-canvas');
+      if (canvas3D) {
+        canvas3D.addEventListener('mouseenter', function() {
+          punto.style.display = 'none';
+          halo.style.display = 'none';
+          document.body.style.cursor = 'grab';
+        });
+        canvas3D.addEventListener('mouseleave', function() {
+          punto.style.display = 'block';
+          halo.style.display = 'block';
+          document.body.style.cursor = 'none';
+        });
+        canvas3D.addEventListener('mousedown', function() { document.body.style.cursor = 'grabbing'; });
+        canvas3D.addEventListener('mouseup', function() { document.body.style.cursor = 'grab'; });
+      }
+    })();
+  </script>
+</body>
+</body>
+</html>

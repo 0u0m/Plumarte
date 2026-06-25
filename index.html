@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IADC · Animación y Diseño Digital</title>
+  <link rel="icon" href="img/logo.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --azul: #293132;
+      --dorado: #FF9843;
+      --blanco: #ffffff;
+      --negro: #201E1E;
+      --gris: #5A6366;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    body { font-family: var(--font-body); background: var(--blanco); color: var(--negro); overflow-x: hidden; font-size: 17px; line-height: 1.6; }
+
+    /* ── NAVBAR ── */
+    nav.navbar-principal {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(32,30,30,.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav-logo {
+      font-family: var(--font-display); font-size: 18px; color: var(--blanco);
+      letter-spacing: .5px; text-decoration: none; display: flex; align-items: center; gap: 12px;
+    }
+    .logo-nav-img { width: 32px; height: 32px; object-fit: cover; border-radius: 4px; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 400; color: var(--blanco); text-decoration: none;
+      letter-spacing: 1.5px; text-transform: uppercase; opacity: .8; transition: opacity .2s, color .2s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--dorado); }
+
+    /* ── HERO ── */
+    .hero {
+      height: 100vh; position: relative;
+      display: flex; align-items: center;
+      padding: 90px 48px 72px; background: var(--negro); overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; background: url('img/Collage.png') center/cover no-repeat; opacity: 1; }
+    .hero-bg-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(32,30,30,.92) 0%, rgba(32,30,30,.55) 55%, rgba(32,30,30,.25) 100%); }
+    .hero-inner {
+      position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto;
+    }
+    .hero-content { max-width: 560px; }
+    .hero-eyebrow { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--dorado); margin-bottom: 20px; font-weight: 400; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(52px, 7vw, 96px); line-height: .95; color: var(--blanco); font-weight: 900; margin-bottom: 32px; }
+    .hero h1 em { font-style: italic; color: var(--dorado); }
+    .hero-sub { font-size: 18px; color: rgba(245, 242, 236, .75); max-width: 480px; line-height: 1.75; font-weight: 300; }
+
+    .hero-content > * { opacity: 0; transform: translateY(30px); animation: fadeUp .9s forwards; }
+    .hero-eyebrow { animation-delay: .1s; }
+    .hero h1      { animation-delay: .3s; }
+    .hero-sub     { animation-delay: .5s; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s ease, transform .9s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: .15s; }
+    .reveal-delay-2 { transition-delay: .30s; }
+    .reveal-delay-3 { transition-delay: .45s; }
+
+    /* ── INTRO ── */
+    .intro { padding: 120px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1400px; margin: 0 auto; }
+    .intro-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--dorado); margin-bottom: 24px; font-weight: 500;
+    }
+    .intro-label svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .intro h2 { font-family: var(--font-display); font-size: clamp(36px, 4vw, 56px); line-height: 1.1; font-weight: 700; color: var(--azul); }
+    .intro-text { font-size: 18px; line-height: 1.85; color: var(--gris); font-weight: 400; }
+    .intro-stat { margin-top: 48px; display: flex; gap: 48px; }
+    .stat-num { font-family: var(--font-display); font-size: 48px; font-weight: 900; color: var(--azul); line-height: 1; }
+    .stat-label { font-size: 13px; color: var(--gris); letter-spacing: 1px; text-transform: uppercase; margin-top: 6px; font-weight: 500; }
+
+    /* ── GALERÍA ESPACIOS ── */
+    .galeria-titulo {
+      padding: 80px 48px 40px; max-width: 1400px; margin: 0 auto;
+      position: relative;
+    }
+    .galeria-titulo::before {
+      content: '';
+      position: absolute; top: 0; left: 48px; right: 48px;
+      height: 1px; background: rgba(41,49,50,.12);
+    }
+    .galeria-titulo .label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--dorado); margin-bottom: 16px; font-weight: 500;
+    }
+    .galeria-titulo .label svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .galeria-titulo h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); font-weight: 700; color: var(--negro); }
+    .galeria-subtitulo { font-size: 14px; color: var(--gris); margin-top: 8px; letter-spacing: .5px; line-height: 1.6; }
+    .galeria { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; padding: 0 12px; }
+    .foto { overflow: hidden; position: relative; background: #d0ccc5; cursor: pointer; }
+    .foto img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s ease; }
+    .foto:hover img { transform: scale(1.04); }
+    .foto-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 24px 20px; background: linear-gradient(transparent, rgba(14,14,14,.7)); color: var(--blanco); font-size: 13px; letter-spacing: .5px; opacity: 0; transition: opacity .3s; }
+    .foto:hover .foto-caption { opacity: 1; }
+    .foto-a { grid-column: 1 / 8; grid-row: 1; height: 520px; }
+    .foto-b { grid-column: 8 / 13; grid-row: 1; height: 520px; }
+    .foto-c { grid-column: 1 / 5; grid-row: 2; height: 360px; }
+    .foto-d { grid-column: 5 / 9; grid-row: 2; height: 360px; }
+    .foto-e { grid-column: 9 / 13; grid-row: 2; height: 360px; }
+
+    /* ── ÁREAS ── */
+    .areas { background: var(--negro); padding: 120px 48px; margin-top: 56px; }
+    .areas-inner { max-width: 1400px; margin: 0 auto; }
+    .areas-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+    .areas-header h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 52px); font-weight: 700; color: var(--blanco); }
+    .areas-header p { font-size: 16px; color: rgba(245, 242, 236, .7); max-width: 320px; text-align: right; line-height: 1.7; }
+    .areas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .area-card { position: relative; overflow: hidden; cursor: pointer; height: 520px; background: #1a1a1a; }
+    .area-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s ease; filter: grayscale(20%); }
+    .area-card:hover img { transform: scale(1.06); filter: grayscale(0%); }
+    .area-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(14,14,14,.85) 0%, rgba(14,14,14,.2) 50%, transparent 100%); }
+    .area-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 28px; }
+    .area-num { font-size: 11px; letter-spacing: 3px; color: var(--dorado); font-weight: 500; margin-bottom: 10px; }
+    .area-nombre { font-family: var(--font-display); font-size: clamp(26px, 2.8vw, 34px); font-weight: 700; color: var(--blanco); line-height: 1.15; margin-bottom: 10px; }
+    .area-desc { font-size: 15px; color: rgba(245,242,236,.75); line-height: 1.65; opacity: 0; transform: translateY(8px); transition: opacity .3s ease, transform .3s ease; }
+    .area-card:hover .area-desc { opacity: 1; transform: translateY(0); }
+    @media (max-width: 900px) { .areas-grid { grid-template-columns: repeat(2, 1fr); } .area-card { height: 380px; } }
+    @media (max-width: 560px) { .areas-grid { grid-template-columns: 1fr; } .area-card { height: 300px; } }
+
+    /* ── CITA ── */
+    .quote-section { background: #EFEBE3; padding: 140px 48px; display: flex; justify-content: center; }
+    .quote-inner { max-width: 860px; text-align: center; }
+    blockquote { font-family: var(--font-display); font-size: clamp(28px, 4vw, 52px); font-style: italic; line-height: 1.25; color: var(--azul); margin-bottom: 32px; }
+    .quote-autor { font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--gris); font-weight: 500; }
+    .quote-linea { width: 48px; height: 1px; background: var(--dorado); margin: 0 auto 20px; }
+
+    /* ── VIDEO ── */
+    .video-section { background: #EFEBE3; padding: 90px 48px; }
+    .video-wrapper { max-width: 960px; margin: 0 auto 0; position: relative; aspect-ratio: 16/9; background: #111; overflow: hidden; border-radius: 8px; box-shadow: 0 24px 60px rgba(0,0,0,.18); }
+
+    /* ── FAQ ACORDEÓN ── */
+    .faq-section { max-width: 880px; margin: 0 auto; padding: 100px 48px; }
+    .faq-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--dorado); margin-bottom: 16px; font-weight: 500;
+    }
+    .faq-label svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .faq-section h2 { font-family: var(--font-display); font-size: clamp(32px, 4vw, 48px); font-weight: 700; color: var(--azul); margin-bottom: 48px; }
+    .faq-item { border-bottom: 1px solid rgba(41,49,50,.12); }
+    .faq-item:first-child { border-top: 1px solid rgba(41,49,50,.12); }
+    .faq-pregunta {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      background: none; border: none; padding: 26px 4px; text-align: left;
+      font-family: var(--font-body); font-size: 18px; font-weight: 500; color: var(--azul);
+      cursor: pointer; transition: color .25s ease;
+    }
+    .faq-item.abierto .faq-pregunta { color: var(--dorado); }
+    .faq-icono {
+      flex-shrink: 0; width: 28px; height: 28px; position: relative;
+      transition: transform .35s ease;
+    }
+    .faq-icono::before, .faq-icono::after {
+      content: ''; position: absolute; background: var(--dorado);
+      transition: transform .3s ease, opacity .3s ease;
+    }
+    .faq-icono::before { left: 6px; right: 6px; top: 13px; height: 2px; }
+    .faq-icono::after  { top: 6px; bottom: 6px; left: 13px; width: 2px; }
+    .faq-item.abierto .faq-icono { transform: rotate(45deg); }
+    .faq-respuesta {
+      max-height: 0; overflow: hidden; transition: max-height .4s ease;
+    }
+    .faq-respuesta-inner { padding: 0 4px 28px; font-size: 16px; color: var(--gris); line-height: 1.75; max-width: 680px; }
+    .faq-lista { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .faq-lista li {
+      position: relative; padding-left: 22px; font-size: 15px; line-height: 1.6;
+    }
+    .faq-lista li::before {
+      content: ''; position: absolute; left: 0; top: 9px;
+      width: 6px; height: 6px; border-radius: 50%; background: var(--dorado);
+    }
+
+    @media (max-width: 768px) {
+      .faq-section { padding: 60px 24px; }
+      .faq-section h2 { font-size: clamp(26px, 7vw, 36px); margin-bottom: 32px; }
+      .faq-pregunta { font-size: 16px; padding: 20px 0; }
+      .faq-respuesta-inner { font-size: 15px; padding: 0 0 22px; }
+      .faq-lista li { font-size: 14px; padding-left: 20px; }
+    }
+
+
+    /* ── FOOTER ── */
+    footer { background: var(--azul); padding: 60px 48px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; }
+    .footer-brand { font-family: var(--font-display); font-size: 22px; color: var(--blanco); margin-bottom: 16px; }
+    .footer-tagline { font-size: 15px; color: rgba(245,242,236,.6); line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--dorado); margin-bottom: 20px; font-weight: 500; }
+    .footer-col a { display: block; font-size: 15px; color: rgba(245,242,236,.7); text-decoration: none; margin-bottom: 12px; transition: color .2s; }
+    .footer-col .link-destacado {
+      display: inline-block; margin-top: 12px; padding: 12px 24px;
+      background-color: var(--dorado); color: var(--negro) !important;
+      font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px;
+      text-decoration: none; border-radius: 4px; border: 1px solid var(--dorado);
+      box-shadow: 0 4px 15px rgba(255,152,67,.25); transition: all .3s; text-align: center;
+    }
+    .footer-col .link-destacado:hover { background-color: transparent; color: var(--dorado) !important; box-shadow: 0 6px 20px rgba(255,152,67,.4); transform: translateY(-3px); }
+    .footer-bottom { background: var(--azul); padding: 20px 48px; border-top: 1px solid rgba(245,242,236,.1); font-size: 12px; color: rgba(245,242,236,.3); display: flex; justify-content: space-between; }
+
+    @media (max-width: 768px) {
+      /* NAV */
+      nav.navbar-principal { padding: 14px 20px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 11px; letter-spacing: 1px; }
+      .nav-logo { font-size: 14px; }
+      .logo-nav-img { width: 26px; height: 26px; }
+
+      /* HERO */
+      .hero { height: auto; min-height: 100vh; padding: 110px 20px 40px; align-items: flex-start; }
+      .hero-content { max-width: 100%; }
+      .hero-sub { font-size: 15px; line-height: 1.7; }
+
+      /* INTRO */
+      .intro { grid-template-columns: 1fr; padding: 60px 20px; gap: 40px; }
+      .intro-stat { gap: 28px; }
+      .stat-num { font-size: 36px; }
+      .intro-text { font-size: 16px; }
+
+      /* GALERÍA ESPACIOS */
+      .galeria-titulo { padding: 48px 20px 24px; }
+      .galeria { grid-template-columns: 1fr; padding: 0 20px; gap: 10px; }
+      .foto-a, .foto-b, .foto-c, .foto-d, .foto-e {
+        grid-column: 1 / -1; grid-row: auto; height: 220px;
+      }
+      .foto-caption { opacity: 1; background: linear-gradient(transparent, rgba(14,14,14,.75)); }
+
+      /* ÁREAS */
+      .areas { padding: 60px 20px; margin-top: 32px; }
+      .areas-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 36px; }
+      .areas-header p { text-align: left; max-width: 100%; }
+      .areas-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .area-card { height: 240px; }
+      .area-nombre { font-size: 18px; }
+      .area-desc { opacity: 1; transform: none; font-size: 14px; line-height: 1.55; }
+
+      /* CITA */
+      .quote-section { padding: 72px 20px; }
+
+      /* VIDEO */
+      .video-section { padding: 48px 20px; }
+      .video-wrapper { margin: 0 auto; border-radius: 6px; }
+
+      /* FOOTER */
+      footer { grid-template-columns: 1fr; padding: 48px 20px; gap: 36px; }
+      .footer-bottom { padding: 16px 20px; flex-direction: column; gap: 4px; text-align: center; }
+    }
+
+    @media (max-width: 420px) {
+      .areas-grid { grid-template-columns: 1fr; }
+      .area-card { height: 280px; }
+      .nav-links { display: none; }
+    }
+
+    /* ── CURSOR PERSONALIZADO ── */
+    @media (hover: hover) and (pointer: fine) {
+      * { cursor: none !important; }
+      #cursor-punto {
+        position: fixed; pointer-events: none; z-index: 9999;
+        width: 8px; height: 8px; border-radius: 50%;
+        background: var(--dorado);
+        transform: translate(-50%, -50%);
+        transition: width .18s ease, height .18s ease, background .18s ease, opacity .18s ease;
+        will-change: left, top;
+      }
+      #cursor-halo {
+        position: fixed; pointer-events: none; z-index: 9998;
+        width: 38px; height: 38px; border-radius: 50%;
+        border: 1.5px solid rgba(255,152,67,.55);
+        transform: translate(-50%, -50%);
+        transition: width .32s ease, height .32s ease, opacity .32s ease, border-color .2s ease;
+        will-change: left, top;
+      }
+      body.cursor-hover #cursor-punto { width: 10px; height: 10px; }
+      body.cursor-hover #cursor-halo  { width: 58px; height: 58px; opacity: .35; }
+      body.cursor-click #cursor-punto { width: 5px; height: 5px; opacity: .7; }
+      body.cursor-click #cursor-halo  { width: 20px; height: 20px; border-color: rgba(255,152,67,.9); }
+    }
+
+    /* ── CONTADORES ANIMADOS ── */
+    .stat-num { transition: color .3s; }
+
+    /* ── NÚMEROS DE SECCIÓN ── */
+    .areas-num {
+      display: inline-flex; align-items: center; gap: 24px;
+      font-family: var(--font-display); font-size: clamp(48px, 6vw, 80px);
+      letter-spacing: 0; text-transform: none;
+      color: var(--dorado); margin-bottom: 0; font-weight: 700;
+    }
+    .areas-num svg { width: 56px; height: 56px; flex-shrink: 0; stroke-width: 1.5; }
+    .quote-num {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--dorado); font-weight: 500; margin-bottom: 24px;
+    }
+    .quote-num svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ── CORRECCIÓN DOT NAV LATERAL FIJO NARANJA ── */
+    .dot-nav {
+      position: fixed !important;
+      right: 24px !important;
+      left: auto !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      margin: 0 !important;
+      z-index: 9000;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      opacity: 1; transition: opacity .6s ease;
+      pointer-events: auto;
+      mix-blend-mode: normal !important; /* Desactiva mezclas automáticas de color */
+    }
+    .dot-nav.inactivo { opacity: 0; pointer-events: none; }
+    
+    .dot-nav a {
+      display: block !important;
+      width: 8px !important; height: 8px !important;
+      border-radius: 50% !important; flex-shrink: 0;
+      border: 1.5px solid #FF9843 !important; /* Naranja institucional fijo */
+      background: #FF9843 !important; /* Naranja institucional fijo */
+      transition: all .3s ease; position: relative; text-decoration: none !important;
+    }
+    
+    .dot-nav a::after {
+      content: attr(data-label);
+      position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+      font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+      color: #FF9843 !important; /* Texto naranja obligatorio */
+      white-space: nowrap; opacity: 0;
+      background: #201E1E !important; /* Caja de fondo oscuro sólido e invariable */
+      border: 1px solid #FF9843 !important; /* Contorno naranja */
+      padding: 4px 10px; border-radius: 3px;
+      transition: opacity .25s ease; pointer-events: none;
+    }
+    .dot-nav a:hover::after,
+    .dot-nav a.activo::after { opacity: 1; }
+    
+    .dot-nav a.activo { 
+      width: 11px !important; height: 11px !important; 
+      background: #FF9843 !important;
+      border-color: #FF9843 !important;
+      box-shadow: 0 0 0 3px rgba(255,152,67,.35) !important; 
+    }
+    .dot-nav a:hover { 
+      width: 11px !important; height: 11px !important; 
+      background: #FF9843 !important;
+      border-color: #FF9843 !important;
+    }
+
+    @media (max-width: 1100px) {
+      .dot-nav { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="cursor-punto"></div>
+  <div id="cursor-halo"></div>
+
+  <nav class="dot-nav" id="dot-nav" aria-label="Navegación de secciones">
+    <a href="#hero" data-label="Inicio" data-section="hero"></a>
+    <a href="#intro" data-label="Sobre la carrera" data-section="intro"></a>
+    <a href="#espacios" data-label="Espacios" data-section="espacios"></a>
+    <a href="#areas" data-label="Áreas" data-section="areas"></a>
+    <a href="#testimonio" data-label="Egresados" data-section="video"></a>
+    <a href="#faq" data-label="Preguntas" data-section="faq"></a>
+  </nav>
+
+  <nav class="navbar-principal">
+    <a class="nav-logo" href="#">
+      <img src="img/logo.jpeg" alt="Logo UPGCH" class="logo-nav-img">
+      IADC · Pablo Guardado Chávez
+    </a>
+    <ul class="nav-links">
+      <li><a href="#espacios">Espacios</a></li>
+      <li><a href="#areas">Áreas</a></li>
+      <li><a href="#video">Egresados</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-bg-overlay"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Universidad Pablo Guardado Chávez · Chiapas</p>
+        <h1>Crea.<br><em>Anima.</em><br>Diseña.</h1>
+        <p class="hero-sub">Ingeniería en Animación y Diseño de Contenido Digital — donde la técnica y la expresión visual se encuentran.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro" id="intro">
+    <div class="reveal">
+      <p class="intro-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1.5 2.5 3 6 3s6-1.5 6-3v-5"/></svg>
+        01 · Sobre la carrera
+      </p>
+      <h2>Una carrera para quienes piensan en imágenes</h2>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <p class="intro-text">El IADC forma profesionales capaces de concebir, producir y distribuir contenido visual de alto impacto. Desde la animación cuadro a cuadro hasta el modelado 3D de superficies complejas, cada semestre es un paso más cerca de la industria creativa.</p>
+      <div class="intro-stat">
+        <div><div class="stat-num" data-target="8" data-suffix="">8</div><div class="stat-label">Semestres</div></div>
+        <div><div class="stat-num" data-target="100" data-suffix="+">100+</div><div class="stat-label">Alumnos activos</div></div>
+        <div><div class="stat-num" data-target="4" data-suffix="">4</div><div class="stat-label">Áreas de estudio</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="espacios" class="galeria-titulo reveal">
+    <p class="label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3.5"/></svg>
+      02 · Nuestros espacios
+    </p>
+    <h2>Laboratorios, estudios y talleres</h2>
+    <p class="galeria-subtitulo">Haz clic en cualquier espacio para conocer más</p>
+  </div>
+
+  <div class="galeria">
+    <div class="foto foto-a reveal" onclick="window.location.href='Laboratorios/taller-dibujo.html'">
+      <img src="img/Dibujo1.jpg" alt="Taller de Dibujo">
+      <div class="foto-caption">Taller de Dibujo</div>
+    </div>
+    <div class="foto foto-b reveal reveal-delay-1" onclick="window.location.href='Laboratorios/Audiovisual.html'">
+      <img src="img/Audiovisual2.jpg" alt="Laboratorio Audiovisual">
+      <div class="foto-caption">Laboratorio Audiovisual</div>
+    </div>
+    <div class="foto foto-c reveal" onclick="window.location.href='Laboratorios/grabacion.html'">
+      <img src="img/Sonido1.jpg" alt="Estudio de Grabación">
+      <div class="foto-caption">Estudio de Grabación</div>
+    </div>
+    <div class="foto foto-d reveal reveal-delay-1" onclick="window.location.href='Laboratorios/Windows.html'">
+      <img src="img/Windows5.jpg" alt="Laboratorio de Windows">
+      <div class="foto-caption">Laboratorio de Windows</div>
+    </div>
+    <div class="foto foto-e reveal reveal-delay-2" onclick="window.location.href='Laboratorios/mac.html'">
+      <img src="img/Mac1.jpg" alt="Laboratorio Mac">
+      <div class="foto-caption">Laboratorio Mac</div>
+    </div>
+  </div>
+
+  <section id="areas" class="areas">
+    <div class="areas-inner">
+      <div class="areas-header reveal">
+        <div>
+          <p class="areas-num">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.5 0 10-3.5 10-9a10 10 0 1 0-10 9Z"/><circle cx="7.5" cy="11.5" r="1.3" fill="currentColor"/><circle cx="11" cy="7.5" r="1.3" fill="currentColor"/><circle cx="16" cy="8.5" r="1.3" fill="currentColor"/><circle cx="17.5" cy="13.5" r="1.3" fill="currentColor"/></svg>
+            03 · Cuatro áreas
+          </p>
+        </div>
+        <p>Cada área forma una dimensión diferente de tu identidad creativa profesional.</p>
+      </div>
+      <div class="areas-grid">
+        <div class="area-card reveal" onclick="window.location.href='Areas/animacion.html'">
+          <img src="img/Animacion.gif" alt="Animación">
+          <div class="area-overlay"></div>
+          <div class="area-info">
+            <div class="area-num">01</div>
+            <div class="area-nombre">Animación</div>
+            <div class="area-desc">2D, 3D, stop motion y principios del movimiento.</div>
+          </div>
+        </div>
+        <div class="area-card reveal reveal-delay-1" onclick="window.location.href='Areas/modelado-3d.html'">
+          <img src="img/Modelado-3D.png" alt="Modelado 3D">
+          <div class="area-overlay"></div>
+          <div class="area-info">
+            <div class="area-num">02</div>
+            <div class="area-nombre">Modelado 3D</div>
+            <div class="area-desc">Superficies orgánicas, hard surface y rigging.</div>
+          </div>
+        </div>
+        <div class="area-card reveal reveal-delay-2" onclick="window.location.href='Areas/Fotografia.html'">
+          <img src="img/Fotografia.JPEG" alt="Fotografía">
+          <div class="area-overlay"></div>
+          <div class="area-info">
+            <div class="area-num">03</div>
+            <div class="area-nombre">Fotografía</div>
+            <div class="area-desc">Lenguaje cinematográfico, luz y composición.</div>
+          </div>
+        </div>
+        <div class="area-card reveal reveal-delay-3" onclick="window.location.href='Areas/diseño_digital.html'">
+          <img src="img/Diseño digital.jpeg" alt="Diseño Digital">
+          <div class="area-overlay"></div>
+          <div class="area-info">
+            <div class="area-num">04</div>
+            <div class="area-nombre">Diseño Digital</div>
+            <div class="area-desc">Motion graphics, UI/UX y contenido para redes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-section" id="testimonio">
+    <div class="quote-inner reveal">
+      <div class="quote-linea"></div>
+      <p class="quote-num">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8c-2.5 0-4 1.8-4 4.2 0 2 1.3 3.3 3 3.3.4 0 .8-.1 1-.2-.3 1.5-1.4 2.8-3 3.5"/><path d="M17 8c-2.5 0-4 1.8-4 4.2 0 2 1.3 3.3 3 3.3.4 0 .8-.1 1-.2-.3 1.5-1.4 2.8-3 3.5"/></svg>
+        04 · Testimonio
+      </p>
+      <blockquote>"No aprendí a usar software. Aprendí a ver el mundo de otra manera."</blockquote>
+      <p class="quote-autor">— Egresado IADC · Generación 2023</p>
+    </div>
+  </section>
+
+  <section class="video-section">
+    <div class="video-wrapper reveal" id="video">
+      <video controls poster="img/portada-video.jpg" style="width:100%; height:100%; object-fit:cover; display:block;">
+        <source src="img/Entrevista final (1).mov" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <section class="faq-section reveal" id="faq">
+    <p class="faq-label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-1.5 2-2.2 2.8-.5.5-.8 1-.8 1.7"/><circle cx="12" cy="17" r=".6" fill="currentColor"/></svg>
+      05 · Preguntas frecuentes
+    </p>
+    <h2>¿Tienes dudas?</h2>
+
+    <div class="faq-item">
+      <button class="faq-pregunta">
+        ¿Cuáles son los requisitos de admisión?
+        <span class="faq-icono"></span>
+      </button>
+      <div class="faq-respuesta">
+        <div class="faq-respuesta-inner">
+          <p style="margin-bottom: 14px;">Para inscribirte necesitas entregar los siguientes documentos:</p>
+          <ul class="faq-lista">
+            <li>Certificado de preparatoria o constancia de estudios</li>
+            <li>Carta de buena conducta</li>
+            <li>Acta de nacimiento</li>
+            <li>CURP</li>
+            <li>6 fotografías tamaño infantil (de frente y con fondo blanco)</li>
+            <li>Certificado médico emitido por el Sector Salud (no se acepta de la Cruz Roja)</li>
+            <li>Copia de identificación oficial</li>
+            <li>Copia del carnet (solo si eres derechohabiente de alguna institución pública de salud)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-pregunta">
+        ¿Cuánto dura la carrera?
+        <span class="faq-icono"></span>
+      </button>
+      <div class="faq-respuesta">
+        <div class="faq-respuesta-inner">
+          La Ingeniería en Animación y Diseño de Contenido Digital tiene una duración de 8 semestres (4 años), distribuidos en las cuatro áreas principales: Animación, Modelado 3D, Fotografía y Diseño Digital.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-pregunta">
+        ¿Qué campo laboral tiene esta carrera?
+        <span class="faq-icono"></span>
+      </button>
+      <div class="faq-respuesta">
+        <div class="faq-respuesta-inner">
+          Nuestros egresados trabajan en estudios de animación, producción audiovisual, diseño gráfico, modelado 3D para videojuegos y publicidad, fotografía profesional y creación de contenido digital, tanto de forma independiente como en empresas.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-pregunta">
+        ¿Necesito tener equipo propio?
+        <span class="faq-icono"></span>
+      </button>
+      <div class="faq-respuesta">
+        <div class="faq-respuesta-inner">
+          No es indispensable. Contamos con laboratorios equipados (Mac, Windows, audiovisual, grabación y taller de dibujo) disponibles para los alumnos durante su formación.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-pregunta">
+        ¿Cómo puedo obtener más información o inscribirme?
+        <span class="faq-icono"></span>
+      </button>
+      <div class="faq-respuesta">
+        <div class="faq-respuesta-inner">
+          Puedes visitar la sección de Admisiones en el sitio oficial de la universidad o contactarnos directamente. Encontrarás los enlaces en el pie de esta página.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div>
+      <div class="footer-brand">IADC · Pablo Guardado Chávez</div>
+      <p class="footer-tagline">Ingeniería en Animación y Diseño de Contenido Digital. Formando la próxima generación de creadores visuales en Chiapas.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Carrera</h4>
+      <a href="#espacios">Espacios</a>
+      <a href="#areas">Áreas</a>
+      <a href="#video">Egresados</a>
+      <a href="#faq">Preguntas</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="https://www.upgch.edu.mx/admisiones/" target="_blank">Admisiones</a>
+      <a href="https://maps.app.goo.gl/FvzSSttgBoo7Pvf69" target="_blank">Ubicación</a>
+      <a href="https://www.upgch.edu.mx/licenciatura/55/animacion-y-diseno-de-contenidos-digitales/" target="_blank" class="link-destacado">Ver Licenciatura oficial →</a>
+    </div>
+  </footer>
+  <div class="footer-bottom">
+    <span>© 2026 UPGCH · IADC</span>
+    <span>Tuxtla Gutiérrez, Chiapas</span>
+  </div>
+
+  <script>
+    /* ── REVEAL AL SCROLL ── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── SCROLL A HASH AL CARGAR ── */
+    window.addEventListener('load', function () {
+      const hash = window.location.hash;
+      if (hash) {
+        const el = document.querySelector(hash);
+        if (el) {
+          document.querySelectorAll('.reveal').forEach(function(r) {
+            r.style.transition = 'none';
+            r.classList.add('visible');
+          });
+          setTimeout(function () {
+            const top = el.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: top, behavior: 'instant' });
+          }, 50);
+        }
+      }
+    });
+
+    /* ── CURSOR PERSONALIZADO ── */
+    (function () {
+      const punto = document.getElementById('cursor-punto');
+      const halo  = document.getElementById('cursor-halo');
+      if (!punto || !halo) return;
+
+      let mx = -100, my = -100;
+      let hx = -100, hy = -100;
+      let raf;
+
+      document.addEventListener('mousemove', function (e) {
+        mx = e.clientX; my = e.clientY;
+        punto.style.left = mx + 'px';
+        punto.style.top  = my + 'px';
+      });
+
+      function animarHalo() {
+        hx += (mx - hx) * 0.11;
+        hy += (my - hy) * 0.11;
+        halo.style.left = hx + 'px';
+        halo.style.top  = hy + 'px';
+        raf = requestAnimationFrame(animarHalo);
+      }
+      animarHalo();
+
+      const interactivos = 'a, button, .foto, .area-card, .lab-foto, input, textarea, select, [onclick]';
+      document.querySelectorAll(interactivos).forEach(function(el) {
+        el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-hover'); });
+        el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-hover'); });
+      });
+
+      document.addEventListener('mousedown', function() {
+        document.body.classList.add('cursor-click');
+        document.body.classList.remove('cursor-hover');
+      });
+      document.addEventListener('mouseup', function() {
+        document.body.classList.remove('cursor-click');
+      });
+
+      document.addEventListener('mouseleave', function() {
+        punto.style.opacity = '0'; halo.style.opacity = '0';
+      });
+      document.addEventListener('mouseenter', function() {
+        punto.style.opacity = '1'; halo.style.opacity = '1';
+      });
+    })();
+
+    /* ── CONTADORES ANIMADOS ── */
+    (function () {
+      const stats = document.querySelectorAll('.stat-num[data-target]');
+      if (!stats.length) return;
+
+      function animarContador(el) {
+        if (el.dataset.animado) return;
+        el.dataset.animado = '1';
+        const target  = parseInt(el.dataset.target, 10);
+        const suffix  = el.dataset.suffix || '';
+        const duracion = 1400;
+        const inicio   = performance.now();
+
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+        function step(ahora) {
+          const progreso = Math.min((ahora - inicio) / duracion, 1);
+          const valor    = Math.round(easeOut(progreso) * target);
+          el.textContent = valor + suffix;
+          if (progreso < 1) {
+            requestAnimationFrame(step);
+          } else {
+            el.textContent = target + suffix;
+          }
+        }
+        requestAnimationFrame(step);
+      }
+
+      const contadorObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) animarContador(entry.target);
+        });
+      }, { threshold: 0.6 });
+
+      stats.forEach(function(el) { contadorObserver.observe(el); });
+    })();
+
+    /* ── DOT NAV LATERAL ── */
+    (function () {
+      const navEl = document.getElementById('dot-nav');
+      const dots = Array.from(document.querySelectorAll('.dot-nav a'));
+      if (!dots.length || !navEl) return;
+
+      const secciones = dots
+        .map(function(dot) {
+          const id = dot.dataset.section;
+          const el = document.getElementById(id);
+          return el ? { id: id, el: el, dot: dot } : null;
+        })
+        .filter(Boolean);
+
+      function actualizarDotActivo() {
+        const scrollPos = window.scrollY + window.innerHeight / 2;
+        let actual = secciones[0];
+        secciones.forEach(function(s) {
+          if (s.el.offsetTop <= scrollPos) actual = s;
+        });
+        dots.forEach(function(d) { d.classList.remove('activo'); });
+        if (actual) actual.dot.classList.add('activo');
+      }
+
+      let ocultarTimer;
+      function mostrarNav() {
+        navEl.classList.remove('inactivo');
+        clearTimeout(ocultarTimer);
+        ocultarTimer = setTimeout(function () {
+          navEl.classList.add('inactivo');
+        }, 2200);
+      }
+
+      window.addEventListener('scroll', function () {
+        actualizarDotActivo();
+        mostrarNav();
+      }, { passive: true });
+
+      navEl.addEventListener('mouseenter', function () {
+        clearTimeout(ocultarTimer);
+        navEl.classList.remove('inactivo');
+      });
+      navEl.addEventListener('mouseleave', mostrarNav);
+
+      window.addEventListener('load', function () {
+        actualizarDotActivo();
+        mostrarNav();
+      });
+      actualizarDotActivo();
+      mostrarNav();
+    })();
+
+    /* ── FAQ ACORDEÓN ── */
+    (function () {
+      const items = document.querySelectorAll('.faq-item');
+      items.forEach(function (item) {
+        const pregunta = item.querySelector('.faq-pregunta');
+        const respuesta = item.querySelector('.faq-respuesta');
+        pregunta.addEventListener('click', function () {
+          const estaAbierto = item.classList.contains('abierto');
+
+          items.forEach(function (otro) {
+            otro.classList.remove('abierto');
+            otro.querySelector('.faq-respuesta').style.maxHeight = null;
+          });
+
+          if (!estaAbierto) {
+            item.classList.add('abierto');
+            respuesta.style.maxHeight = respuesta.scrollHeight + 'px';
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

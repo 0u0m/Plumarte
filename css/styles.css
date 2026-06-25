@@ -1,0 +1,221 @@
+/* ── HINT DE CLIC EN FOTOS ── */
+.foto-click-hint {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(255, 152, 67, 0.9);
+  color: #b60909; font-size: 11px; letter-spacing: 1px;
+  padding: 5px 10px; border-radius: 4px;
+  opacity: 0; transition: opacity .3s; pointer-events: none;
+}
+.foto:hover .foto-click-hint { opacity: 1; }
+.foto { cursor: pointer; }
+
+/* ── PANEL EXPANDIBLE ── */
+.lab-panel { max-height: 0; overflow: hidden; transition: max-height .6s ease; background: #293132; }
+.lab-panel.abierto { max-height: 700px; }
+.lab-panel-inner { padding: 48px; max-width: 1400px; margin: 0 auto; }
+.lab-panel-cerrar {
+  background: none; border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.6);
+  font-size: 12px; letter-spacing: 1px; padding: 8px 16px; cursor: pointer;
+  border-radius: 4px; margin-bottom: 28px; transition: all .2s;
+}
+.lab-panel-cerrar:hover { border-color: #FF9843; color: #FF9843; }
+.lab-panel-header { margin-bottom: 28px; }
+.lab-panel-header h3 { font-family: var(--font-display); font-size: 28px; color: #f5f2ec; margin-bottom: 8px; }
+.lab-panel-header p { font-size: 14px; color: #757F82; line-height: 1.6; max-width: 600px; }
+.lab-panel-fotos { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.lab-panel-fotos img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; cursor: pointer; transition: transform .3s, opacity .3s; opacity: .85; }
+.lab-panel-fotos img:hover { transform: scale(1.03); opacity: 1; }
+
+.galeria-subtitulo { font-size: 13px; color: var(--gris); margin-top: 8px; letter-spacing: .5px; }
+
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0, 0, 0, 0.92); z-index: 999;
+  align-items: center; justify-content: center; padding: 24px;
+}
+.lightbox.abierto { display: flex; }
+.lightbox-contenido { position: relative; max-width: 1000px; width: 100%; text-align: center; }
+.lightbox-contenido img { width: 100%; max-height: 80vh; object-fit: contain; border-radius: 4px; display: block; }
+.lightbox-desc { color: rgba(245, 242, 236, 0.75); font-size: 14px; margin-top: 16px; letter-spacing: 0.5px; }
+.lightbox-cerrar {
+  position: absolute; top: 20px; right: 28px; background: none; border: none;
+  color: rgba(245, 242, 236, 0.6); font-size: 28px; cursor: pointer; transition: color 0.2s; z-index: 1000;
+}
+.lightbox-cerrar:hover { color: #fff; }
+
+/* ── NUEVA SECCIÓN DE ÁREAS TIPOGRÁFICAS ── */
+.areas-list-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.area-text-row {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 48px;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(245, 242, 236, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.area-text-row:hover {
+  background-color: rgba(255, 152, 67, 0.02);
+  padding-left: 16px;
+}
+
+.row-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+}
+
+.row-num {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dorado);
+  letter-spacing: 1px;
+}
+
+.row-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 700;
+  color: var(--blanco);
+  line-height: 1.1;
+}
+
+.row-desc {
+  font-size: 15px;
+  color: rgba(245, 242, 236, 0.6);
+  line-height: 1.7;
+  max-width: 680px;
+  align-self: center;
+}
+
+/* ── DISEÑO EXCLUSIVO DESTACADO PARA MODELADO 3D ── */
+.area-text-row.destacado {
+  background-color: rgba(255, 152, 67, 0.04);
+  border-left: 3px solid var(--dorado);
+  padding-left: 24px;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.area-text-row.destacado:hover {
+  background-color: rgba(255, 152, 67, 0.07);
+  padding-left: 32px;
+}
+
+.row-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.badge-interactivo {
+  align-self: flex-start;
+  background: var(--dorado);
+  color: var(--negro);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 4px 8px;
+  font-weight: 500;
+  border-radius: 2px;
+}
+
+.row-content-destacado {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.row-link-action {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--dorado);
+  font-weight: 500;
+  transition: transform 0.2s ease;
+}
+
+.area-text-row.destacado:hover .row-link-action {
+  transform: translateX(6px);
+}
+
+/* Ajuste Responsivo para Celulares */
+@media (max-width: 768px) {
+  .area-text-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 32px 0;
+  }
+  .area-text-row.destacado {
+    padding-left: 16px;
+  }
+}
+/* ── BOTÓN DESTACADO PREMIUM (LICENCIATURA OFICIAL) ── */
+.footer-col .link-destacado {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 12px 24px;
+  background-color: var(--dorado); /* Usa tu color naranja #FF9843 */
+  color: var(--negro) !important;  /* Texto oscuro #201E1E para que resalte perfectamente */
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-decoration: none;
+  border-radius: 4px;
+  border: 1px solid var(--dorado);
+  box-shadow: 0 4px 15px rgba(255, 152, 67, 0.25); /* Sutil resplandor inferior */
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  text-align: center;
+}
+
+/* Efecto interactivo al pasar el mouse (Hover) */
+.footer-col .link-destacado:hover {
+  background-color: transparent;
+  color: var(--dorado) !important; /* Invierte los colores de forma elegante */
+  box-shadow: 0 6px 20px rgba(255, 152, 67, 0.4);
+  transform: translateY(-3px); /* Eleva el botón sutilmente */
+}
+
+/* Efecto cuando se presiona */
+.footer-col .link-destacado:active {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(255, 152, 67, 0.2);
+}
+
+/* ── CURSOR INTERACTIVO PREMIUM PERSONALIZADO ── */
+    @media (hover: hover) and (pointer: fine) {
+      * { cursor: none !important; }
+      #cursor-punto {
+        position: fixed; pointer-events: none; z-index: 9999;
+        width: 8px; height: 8px; border-radius: 50%;
+        background: var(--naranja);
+        transform: translate(-50%, -50%);
+        transition: width .18s ease, height .18s ease, background .18s ease, opacity .18s ease;
+        will-change: left, top;
+        left: -100px; top: -100px;
+      }
+      #cursor-halo {
+        position: fixed; pointer-events: none; z-index: 9998;
+        width: 38px; height: 38px; border-radius: 50%;
+        border: 1.5px solid rgba(255,152,67,.55);
+        transform: translate(-50%, -50%);
+        transition: width .32s ease, height .32s ease, opacity .32s ease, border-color .2s ease;
+        will-change: left, top;
+        left: -100px; top: -100px;
+      }
+      body.cursor-hover #cursor-punto { width: 10px; height: 10px; }
+      body.cursor-hover #cursor-halo  { width: 58px; height: 58px; opacity: .35; }
+      body.cursor-click #cursor-punto { width: 5px; height: 5px; opacity: .7; }
+      body.cursor-click #cursor-halo  { width: 20px; height: 20px; border-color: rgba(255,152,67,.9); }
+    }
