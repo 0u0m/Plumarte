@@ -6,7 +6,7 @@
   <title>Estudio de Grabación · IADC</title>
   <link rel="icon" href="img/logo.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -65,20 +65,18 @@
     }
 
     .lab-eyebrow { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: var(--naranja); margin-bottom: 24px; font-weight: 500; }
-    .lab-header h1 { font-family: var(--font-display); font-size: clamp(44px, 7vw, 92px); color: var(--blanco); font-weight: 900; line-height: 1.0; margin-bottom: 28px; letter-spacing: -1px; }
+    
+    /* TÍTULO PRINCIPAL EN NARANJA INSTITUCIONAL */
+    .lab-header h1 { font-family: var(--font-display); font-size: clamp(44px, 7vw, 92px); color: var(--naranja); font-weight: 900; line-height: 1.0; margin-bottom: 28px; letter-spacing: -1px; }
     .lab-header p { font-size: 19px; color: rgba(245,242,236,.8); max-width: 720px; line-height: 1.7; font-weight: 300; }
-
-    /* ── STAT BANNER ── */
-    .stat-banner { background: var(--oscuro); padding: 48px; display: flex; justify-content: center; gap: 96px; }
-    .stat-item { text-align: center; }
-    .stat-num { font-family: var(--font-display); font-size: 48px; font-weight: 900; color: var(--naranja); line-height: 1; }
-    .stat-label { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: rgba(245,242,236,.5); margin-top: 6px; }
 
     /* ── GALERÍA ── */
     .lab-galeria { padding: 80px 48px; max-width: 1400px; margin: 0 auto; }
     .lab-galeria-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; }
     .lab-galeria-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gris); margin-bottom: 8px; }
-    .lab-galeria-header h2 { font-family: var(--font-display); font-size: 36px; font-weight: 700; }
+    
+    /* TÍTULO DE GALERÍA EN NARANJA INSTITUCIONAL */
+    .lab-galeria-header h2 { font-family: var(--font-display); font-size: 36px; font-weight: 700; color: var(--naranja); }
     .foto-count { font-size: 13px; color: var(--gris); }
 
     .lab-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
@@ -98,7 +96,9 @@
     .lab-equipo { background: var(--negro); padding: 100px 80px; }
     .lab-equipo-inner { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr 1.3fr; gap: 100px; align-items: start; }
     .lab-equipo-texto .label { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--naranja); margin-bottom: 24px; font-weight: 500; }
-    .lab-equipo h2 { font-family: var(--font-display); font-size: clamp(38px, 4vw, 56px); color: var(--blanco); margin-bottom: 28px; line-height: 1.1; }
+    
+    /* TÍTULO DE EQUIPAMIENTO EN NARANJA INSTITUCIONAL */
+    .lab-equipo h2 { font-family: var(--font-display); font-size: clamp(38px, 4vw, 56px); color: var(--naranja); margin-bottom: 28px; line-height: 1.1; }
     .lab-equipo p { font-size: 17px; color: rgba(245,242,236,.6); line-height: 1.8; }
 
     .equipo-lista { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; }
@@ -106,19 +106,9 @@
     .equipo-lista li:hover { border-color: rgba(255,152,67,.4); background: rgba(255, 152, 67, 0.03); padding-left: 24px; }
     .equipo-lista li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--naranja); flex-shrink: 0; }
 
-    /* ── CONEXIÓN CON AUDIOVISUAL ── */
-    .lab-conexion { background: var(--oscuro); padding: 60px 48px; }
-    .lab-conexion-inner { max-width: 1400px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 48px; }
-    .lab-conexion h3 { font-family: var(--font-display); font-size: 28px; color: var(--blanco); margin-bottom: 12px; }
-    .lab-conexion p { font-size: 15px; color: rgba(245,242,236,.55); line-height: 1.7; max-width: 500px; }
-    .lab-conexion-link { flex-shrink: 0; display: inline-block; padding: 14px 36px; border: 1px solid var(--naranja); color: var(--naranja); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: background .25s, color .25s; }
-    .lab-conexion-link:hover { background: var(--naranja); color: var(--negro); }
-
-    /* ── FOOTER INTEGRADO ── */
+    /* ── FOOTER LIMPIO SIN BOTONES DUPLICADOS ── */
     .lab-footer { background: var(--negro); padding: 40px 80px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,.05); }
     .lab-footer p { font-size: 14px; color: rgba(245,242,236,.3); }
-    .lab-footer .btn-footer-volver { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--naranja); text-decoration: none; border: 1px solid var(--naranja); padding: 10px 20px; border-radius: 4px; transition: all 0.2s; }
-    .lab-footer .btn-footer-volver:hover { background: var(--naranja); color: var(--negro); }
 
     /* ── LIGHTBOX ── */
     .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.94); z-index: 999; align-items: center; justify-content: center; padding: 24px; }
@@ -161,35 +151,20 @@
       .lab-header h1 { font-size: clamp(36px, 11vw, 60px); margin-bottom: 20px; }
       .lab-header p { font-size: 16px; }
 
-      /* STAT BANNER */
-      .stat-banner { padding: 32px 20px; gap: 32px; flex-wrap: wrap; }
-      .stat-num { font-size: 40px; }
-      .stat-label { font-size: 11px; }
-
       /* GALERÍA */
       .lab-galeria { padding: 48px 20px; }
       .lab-galeria-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 24px; }
       .lab-galeria-header h2 { font-size: 26px; }
       .lab-grid { display: flex; flex-direction: column; gap: 10px; }
-      .foto-1, .foto-2, .foto-3, .foto-4, .foto-5 { height: 240px !important; }
+      .foto-1, .foto-2, .foto-3 { height: 240px !important; }
       .lab-foto-caption { opacity: 1; }
 
       /* EQUIPAMIENTO */
       .lab-equipo { padding: 60px 24px; }
       .lab-equipo-inner { grid-template-columns: 1fr; gap: 40px; }
       .lab-equipo h2 { font-size: clamp(28px, 8vw, 44px); }
-      .lab-equipo p { font-size: 15px; }
       .equipo-lista { grid-template-columns: 1fr; gap: 8px; }
       .equipo-lista li { font-size: 14px; padding: 14px 18px; }
-
-      /* SOFTWARE */
-      .lab-software { padding: 60px 24px; }
-      .software-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .software-item { padding: 18px 14px; }
-      .software-icon { font-size: 24px; margin-bottom: 8px; }
-      .software-nombre { font-size: 13px; }
-
-      /* FOOTER */
       .lab-footer { padding: 28px 24px; flex-direction: column; gap: 16px; text-align: center; }
       .lab-footer p { font-size: 12px; }
     }
@@ -198,9 +173,7 @@
       .lab-header-content { padding: 20px 20px 40px 20px; }
       .lab-header h1 { font-size: clamp(32px, 12vw, 52px); }
       .lab-volver { font-size: 11px; padding: 8px 14px; letter-spacing: 1px; }
-      .stat-banner { gap: 20px; padding: 28px 16px; }
-      .foto-1, .foto-2, .foto-3, .foto-4, .foto-5 { height: 200px !important; }
-      .software-grid { grid-template-columns: 1fr; }
+      .foto-1, .foto-2, .foto-3 { height: 200px !important; }
     }
 /* ── CURSOR INTERACTIVO PREMIUM PERSONALIZADO ── */
     @media (hover: hover) and (pointer: fine) {
@@ -231,34 +204,21 @@
   </style>
 </head>
 <body>
-<body>
   <!-- ELEMENTOS DEL CURSOR PERSONALIZADO -->
   <div id="cursor-punto"></div>
   <div id="cursor-halo"></div>
+  
   <header class="lab-header">
     <div class="lab-header-bg"></div>
     <div class="lab-header-content">
       <a href="../index.html#espacios" class="lab-volver">← Volver a inicio</a>
-      <p class="lab-eyebrow">Estudio · IADC</p>
-      <h1>Estudio de<br>Grabación</h1>
-      <p>Espacio acústicamente tratado con difusores QRD, iMac con Focusrite Scarlett, monitores Adam Audio estéreo y piano Studiologic de 88 teclas. Audio profesional para cine y contenido digital.</p>
+      <div class="lab-header-text">
+        <p class="lab-eyebrow">Estudio · IADC</p>
+        <h1>Estudio de<br>Grabación</h1>
+        <p>Espacio acústicamente tratado con difusores QRD, iMac con Focusrite Scarlett, monitores Adam Audio estéreo y piano Studiologic de 88 teclas. Audio profesional para cine y contenido digital.</p>
+      </div>
     </div>
   </header>
-
-  <div class="stat-banner">
-    <div class="stat-item">
-      <div class="stat-num">88</div>
-      <div class="stat-label">Teclas · Piano Studiologic</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">10+</div>
-      <div class="stat-label">Paneles acústicos QRD</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">2</div>
-      <div class="stat-label">Monitores Adam Audio</div>
-    </div>
-  </div>
 
   <section class="lab-galeria">
     <div class="lab-galeria-header">
@@ -314,19 +274,8 @@
     </div>
   </section>
 
-  <section class="lab-conexion">
-    <div class="lab-conexion-inner">
-      <div>
-        <h3>Conectado al Laboratorio Audiovisual</h3>
-        <p>El Estudio de Grabación tiene acceso directo al Laboratorio Audiovisual. Los alumnos pueden grabar audio en el estudio y sincronizarlo en tiempo real con las producciones del ciclorama verde, creando un flujo de trabajo profesional completo de audio y video.</p>
-      </div>
-      <a href="audiovisual.html" class="lab-conexion-link">Ver Laboratorio Audiovisual →</a>
-    </div>
-  </section>
-
   <div class="lab-footer">
     <p>© 2026 IADC · Pablo Guardado Chávez · Tuxtla Gutiérrez, Chiapas</p>
-    <a href="./index.html#espacios" class="btn-footer-volver">← Volver al inicio</a>
   </div>
 
   <div id="lightbox" class="lightbox">
@@ -366,6 +315,7 @@
       if (e.key === 'ArrowRight') abrirEn((indiceActual + 1) % fotos.length);
     });
   </script>
+
   <!-- SCRIPT DEL CURSOR INTERACTIVO PREMIUM -->
   <script>
     (function () {
@@ -377,14 +327,12 @@
       let hx = -100, hy = -100;
       let raf;
 
-      // Seguimiento de coordenadas del mouse
       document.addEventListener('mousemove', function (e) {
         mx = e.clientX; my = e.clientY;
         punto.style.left = mx + 'px';
         punto.style.top  = my + 'px';
       });
 
-      // Animación del halo con retraso inercial fluido
       function animarHalo() {
         hx += (mx - hx) * 0.11;
         hy += (my - hy) * 0.11;
@@ -394,7 +342,6 @@
       }
       animarHalo();
 
-      // Detectar elementos interactivos para expandir el cursor
       const interactivos = 'a, button, .foto, .area-card, .lab-foto, input, textarea, select, [onclick], .selector-btn, .visor-btn';
       
       function actualizarListeners() {
@@ -405,11 +352,9 @@
       }
       actualizarListeners();
       
-      // Mutación observada por si cambias componentes dinámicamente
       const observer = new MutationObserver(actualizarListeners);
       observer.observe(document.body, { childList: true, subtree: true });
 
-      // Efectos de clics mecánicos
       document.addEventListener('mousedown', function() {
         document.body.classList.add('cursor-click');
         document.body.classList.remove('cursor-hover');
@@ -418,7 +363,6 @@
         document.body.classList.remove('cursor-click');
       });
 
-      // Mostrar/Ocultar cursor si sale de la ventana del navegador
       document.addEventListener('mouseleave', function() {
         punto.style.opacity = '0'; halo.style.opacity = '0';
       });
@@ -426,7 +370,6 @@
         punto.style.opacity = '1'; halo.style.opacity = '1';
       });
 
-      // COMPATIBILIDAD CON VISOR 3D (Si existe el lienzo de Three.js en la página)
       const canvas3D = document.getElementById('visor-canvas');
       if (canvas3D) {
         canvas3D.addEventListener('mouseenter', function() {
@@ -444,6 +387,5 @@
       }
     })();
   </script>
-</body>
 </body>
 </html>

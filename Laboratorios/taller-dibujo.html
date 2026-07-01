@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Taller de Dibujo · IADC</title>
-  <link rel="icon" href="img/logo.jpeg">
+  <title>Laboratorio Mac · IADC</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -21,31 +20,20 @@
     }
     body { font-family: var(--font-body); background: var(--blanco); color: var(--negro); }
 
-    /* ── HEADER ── */
+    /* ── HEADER OPTIMIZADO ── */
     .lab-header {
-      height: 70vh;
-      position: relative;
-      display: flex;
-      align-items: flex-end;
-      padding: 48px 80px 64px 80px;
-      background: var(--negro);
-      overflow: hidden;
+      height: 70vh; position: relative;
+      display: flex; align-items: flex-end; padding: 48px 80px 64px 80px;
+      background: var(--negro); overflow: hidden;
     }
     .lab-header-bg {
-      position: absolute;
-      inset: 0;
-      background: url('../img/Dibujo1.jpg') center/cover no-repeat;
+      position: absolute; inset: 0;
+      background: url('../img/Mac3.jpg') center/cover no-repeat;
       opacity: .25;
       z-index: 1;
     }
-    .lab-header-content {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
+    .lab-header-content { position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto; }
+    
     /* ── EL NUEVO BOTÓN VOLVER LLAMATIVO Y ENMARCADO ── */
     .lab-volver {
       display: inline-flex;
@@ -77,84 +65,37 @@
     }
 
     .lab-eyebrow {
-      font-size: 12px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--naranja);
-      margin-bottom: 24px;
-      font-weight: 500;
+      font-size: 12px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--naranja); margin-bottom: 24px; font-weight: 500;
     }
+    
+    /* TÍTULO PRINCIPAL EN NARANJA INSTITUCIONAL */
     .lab-header h1 {
       font-family: var(--font-display);
       font-size: clamp(44px, 7vw, 92px);
-      color: var(--blanco);
-      font-weight: 900;
-      line-height: 1.0;
-      margin-bottom: 28px;
+      color: var(--naranja);
+      font-weight: 900; line-height: 1.0; margin-bottom: 28px;
       letter-spacing: -1px;
     }
     .lab-header p {
-      font-size: 19px;
-      color: rgba(245,242,236,.8);
-      max-width: 720px;
-      line-height: 1.7;
-      font-weight: 300;
-    }
-
-    /* ── STAT BANNER ── */
-    .stat-banner {
-      background: var(--naranja);
-      padding: 48px;
-      display: flex;
-      justify-content: center;
-      gap: 96px;
-    }
-    .stat-item {
-      text-align: center;
-    }
-    .stat-num {
-      font-family: var(--font-display);
-      font-size: 56px;
-      font-weight: 900;
-      color: var(--negro);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(32,30,30,.7);
-      margin-top: 6px;
+      font-size: 19px; color: rgba(245,242,236,.8);
+      max-width: 720px; line-height: 1.7; font-weight: 300;
     }
 
     /* ── GALERÍA ── */
-    .lab-galeria {
-      padding: 80px 48px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+    .lab-galeria { padding: 80px 48px; max-width: 1400px; margin: 0 auto; }
     .lab-galeria-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 40px;
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 40px;
     }
     .lab-galeria-label {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gris);
-      margin-bottom: 8px;
+      font-size: 11px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gris); margin-bottom: 8px;
     }
-    .lab-galeria-header h2 {
-      font-family: var(--font-display);
-      font-size: 36px;
-      font-weight: 700;
-    }
-    .foto-count {
-      font-size: 13px;
-      color: var(--gris);
-    }
+    
+    /* TÍTULO DE GALERÍA EN NARANJA INSTITUCIONAL */
+    .lab-galeria-header h2 { font-family: var(--font-display); font-size: 36px; font-weight: 700; color: var(--naranja); }
+    .foto-count { font-size: 13px; color: var(--gris); }
 
     .lab-grid {
       display: grid;
@@ -162,221 +103,116 @@
       gap: 12px;
     }
     .lab-foto {
-      position: relative;
-      overflow: hidden;
-      border-radius: 6px;
-      background: #c8c4bc;
-      cursor: pointer;
+      position: relative; overflow: hidden;
+      border-radius: 6px; background: #c8c4bc; cursor: pointer;
     }
     .lab-foto img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform .7s ease, opacity .3s;
-      opacity: .92;
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .7s ease, opacity .3s; opacity: .92;
     }
-    .lab-foto:hover img {
-      transform: scale(1.04);
-      opacity: 1;
-    }
+    .lab-foto:hover img { transform: scale(1.04); opacity: 1; }
     .lab-foto-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
+      position: absolute; bottom: 0; left: 0; right: 0;
       padding: 36px 18px 16px;
       background: linear-gradient(transparent, rgba(32,30,30,.85));
-      color: var(--blanco);
-      font-size: 13px;
-      opacity: 0;
-      transition: opacity .3s;
+      color: var(--blanco); font-size: 13px; opacity: 0; transition: opacity .3s;
     }
-    .lab-foto:hover .lab-foto-caption {
-      opacity: 1;
-    }
+    .lab-foto:hover .lab-foto-caption { opacity: 1; }
     .lab-foto-hint {
-      position: absolute;
-      top: 12px; right: 12px;
-      background: rgba(255, 152, 67, 0.9);
-      color: #fff;
-      font-size: 10px;
-      letter-spacing: 1px;
-      padding: 4px 10px;
-      border-radius: 3px;
-      opacity: 0;
-      transition: opacity .3s;
-      pointer-events: none;
+      position: absolute; top: 12px; right: 12px;
+      background: rgba(255,152,67,.9); color: #fff;
+      font-size: 10px; letter-spacing: 1px; padding: 4px 10px;
+      border-radius: 3px; opacity: 0; transition: opacity .3s; pointer-events: none;
     }
-    .lab-foto:hover .lab-foto-hint {
-      opacity: 1;
-    }
+    .lab-foto:hover .lab-foto-hint { opacity: 1; }
 
-    .foto-1 { grid-column: 1 / 7; height: 460px; }
-    .foto-2 { grid-column: 7 / 13; height: 460px; }
+    .foto-1 { grid-column: 1 / 8; height: 480px; }
+    .foto-2 { grid-column: 8 / 13; height: 480px; }
     .foto-3 { grid-column: 1 / 5; height: 340px; }
-    .foto-4 { grid-column: 5 / 13; height: 340px; }
+    .foto-4 { grid-column: 5 / 9; height: 340px; }
+    .foto-5 { grid-column: 9 / 13; height: 340px; }
 
     /* ── EQUIPAMIENTO ── */
-    .lab-equipo {
-      background: var(--oscuro);
-      padding: 100px 80px;
-    }
+    .lab-equipo { background: var(--oscuro); padding: 100px 80px; }
     .lab-equipo-inner {
-      max-width: 1400px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.1fr 1.3fr;
-      gap: 100px;
-      align-items: start;
+      max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.1fr 1.3fr;
+      gap: 100px; align-items: start;
     }
     .lab-equipo-texto .label {
-      font-size: 12px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--naranja);
-      margin-bottom: 24px;
-      font-weight: 500;
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--naranja); margin-bottom: 24px; font-weight: 500;
     }
+    
+    /* TÍTULO DE EQUIPAMIENTO EN NARANJA INSTITUCIONAL */
     .lab-equipo h2 {
-      font-family: var(--font-display);
-      font-size: clamp(38px, 4vw, 56px);
-      color: var(--blanco);
-      margin-bottom: 28px;
-      line-height: 1.1;
+      font-family: var(--font-display); font-size: clamp(38px, 4vw, 56px);
+      color: var(--naranja); margin-bottom: 28px; line-height: 1.1;
     }
-    .lab-equipo p {
-      font-size: 17px;
-      color: rgba(245,242,236,.65);
-      line-height: 1.8;
-      font-weight: 300;
-    }
+    .lab-equipo p { font-size: 17px; color: rgba(245,242,236,.65); line-height: 1.8; font-weight: 300; }
+    
     .equipo-lista {
       list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%;
     }
     .equipo-lista li {
-      font-size: 16px;
-      color: rgba(245,242,236,.85);
-      padding: 18px 24px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255,255,255,.06);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      transition: all .25s ease;
+      font-size: 16px; color: rgba(245,242,236,.85);
+      padding: 18px 24px; background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255,255,255,.06); border-radius: 6px;
+      display: flex; align-items: center; gap: 14px; transition: all .25s ease;
     }
-    .equipo-lista li:hover {
-      border-color: rgba(255,152,67,.4);
-      background: rgba(255, 152, 67, 0.03);
-      padding-left: 24px;
-    }
+    .equipo-lista li:hover { border-color: rgba(255,152,67,.3); }
     .equipo-lista li::before {
-      content: '';
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--naranja);
-      flex-shrink: 0;
+      content: ''; width: 8px; height: 8px;
+      border-radius: 50%; background: var(--naranja); flex-shrink: 0;
     }
+
+    /* ── SOFTWARE ── */
+    .lab-software { background: var(--negro); padding: 100px 80px; }
+    .lab-software-inner { max-width: 1400px; margin: 0 auto; }
+    .lab-software .label {
+      font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--naranja); margin-bottom: 24px; font-weight: 500;
+    }
+    
+    /* TÍTULO DE SOFTWARE EN NARANJA INSTITUCIONAL */
+    .lab-software h2 {
+      font-family: var(--font-display); font-size: clamp(38px, 4vw, 56px);
+      color: var(--naranja); margin-bottom: 40px;
+    }
+    .software-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px;
+    }
+    .software-item {
+      padding: 24px 20px; border: 1px solid rgba(255,255,255,.07);
+      border-radius: 8px; text-align: center; transition: border-color .2s, transform .2s;
+    }
+    .software-item:hover { border-color: rgba(255,152,67,.4); transform: translateY(-3px); }
+    .software-icon { font-size: 32px; margin-bottom: 12px; }
+    .software-nombre { font-size: 14px; font-weight: 500; color: var(--blanco); margin-bottom: 4px; }
+    .software-categoria { font-size: 12px; color: var(--gris); }
 
     /* ── FOOTER INTEGRADO ── */
     .lab-footer {
-      background: var(--negro);
-      padding: 40px 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      background: var(--negro); padding: 40px 80px;
+      display: flex; align-items: center; justify-content: space-between;
       border-top: 1px solid rgba(255,255,255,.05);
     }
-    .lab-footer p {
-      font-size: 14px;
-      color: rgba(245,242,236,.3);
-    }
-    .lab-footer .btn-footer-volver {
-      font-size: 13px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--naranja);
-      text-decoration: none;
-      border: 1px solid var(--naranja);
-      padding: 10px 20px;
-      border-radius: 4px;
-      transition: all 0.2s;
-    }
-    .lab-footer .btn-footer-volver:hover {
-      background: var(--naranja);
-      color: var(--negro);
-    }
+    .lab-footer p { font-size: 14px; color: rgba(245,242,236,.3); }
 
     /* ── LIGHTBOX ── */
     .lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.94);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,.94); z-index: 999;
+      align-items: center; justify-content: center; padding: 24px;
     }
-    .lightbox.abierto {
-      display: flex;
-    }
-    .lightbox-contenido {
-      max-width: 1100px;
-      width: 100%;
-      text-align: center;
-    }
-    .lightbox-contenido img {
-      width: 100%;
-      max-height: 82vh;
-      object-fit: contain;
-      border-radius: 4px;
-      display: block;
-    }
-    .lightbox-desc {
-      color: rgba(245,242,236,.65);
-      font-size: 14px;
-      margin-top: 16px;
-    }
-    .lightbox-cerrar {
-      position: fixed;
-      top: 20px;
-      right: 28px;
-      background: none;
-      border: none;
-      color: rgba(245,242,236,.5);
-      font-size: 32px;
-      cursor: pointer;
-      transition: color .2s;
-    }
-    .lightbox-cerrar:hover {
-      color: #fff;
-    }
-    .lightbox-nav {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,.08);
-      border: none;
-      color: rgba(245,242,236,.7);
-      font-size: 28px;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background .2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lightbox-nav:hover {
-      background: rgba(255,152,67,.3);
-      color: #fff;
-    }
+    .lightbox.abierto { display: flex; }
+    .lightbox-contenido { max-width: 1100px; width: 100%; text-align: center; }
+    .lightbox-contenido img { width: 100%; max-height: 82vh; object-fit: contain; border-radius: 4px; display: block; }
+    .lightbox-desc { color: rgba(245,242,236,.65); font-size: 14px; margin-top: 16px; }
+    .lightbox-cerrar { position: fixed; top: 20px; right: 28px; background: none; border: none; color: rgba(245,242,236,.5); font-size: 32px; cursor: pointer; transition: color .2s; }
+    .lightbox-cerrar:hover { color: #fff; }
+    .lightbox-nav { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.08); border: none; color: rgba(245,242,236,.7); font-size: 28px; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; transition: background .2s; display: flex; align-items: center; justify-content: center; }
+    .lightbox-nav:hover { background: rgba(255,152,67,.3); color: #fff; }
     .lightbox-prev { left: 20px; }
     .lightbox-next { right: 20px; }
     @media (max-width: 992px) {
@@ -407,11 +243,6 @@
       .lab-eyebrow { font-size: 11px; margin-bottom: 16px; }
       .lab-header h1 { font-size: clamp(36px, 11vw, 60px); margin-bottom: 20px; }
       .lab-header p { font-size: 16px; }
-
-      /* STAT BANNER */
-      .stat-banner { padding: 32px 20px; gap: 32px; flex-wrap: wrap; }
-      .stat-num { font-size: 40px; }
-      .stat-label { font-size: 11px; }
 
       /* GALERÍA */
       .lab-galeria { padding: 48px 20px; }
@@ -445,7 +276,6 @@
       .lab-header-content { padding: 20px 20px 40px 20px; }
       .lab-header h1 { font-size: clamp(32px, 12vw, 52px); }
       .lab-volver { font-size: 11px; padding: 8px 14px; letter-spacing: 1px; }
-      .stat-banner { gap: 20px; padding: 28px 16px; }
       .foto-1, .foto-2, .foto-3, .foto-4, .foto-5 { height: 200px !important; }
       .software-grid { grid-template-columns: 1fr; }
     }
@@ -478,7 +308,6 @@
   </style>
 </head>
 <body>
-<body>
   <!-- ELEMENTOS DEL CURSOR PERSONALIZADO -->
   <div id="cursor-punto"></div>
   <div id="cursor-halo"></div>
@@ -486,58 +315,49 @@
     <div class="lab-header-bg"></div>
     <div class="lab-header-content">
       <a href="../index.html#espacios" class="lab-volver">← Volver a inicio</a>
-      <p class="lab-eyebrow">Taller · IADC</p>
-      <h1>Taller de<br>Dibujo</h1>
-      <p>Espacio equipado con restiradores profesionales individuales, bancos de madera ajustables, iluminación cenital y aire acondicionado. Pensado para el desarrollo técnico de las artes plásticas.</p>
+      <p class="lab-eyebrow">Laboratorio · IADC</p>
+      <h1>Laboratorio<br>Mac</h1>
+      <p>iMacs con teclados y ratones Magic de Apple, proyector interactivo y estación del maestro con escritorio de madera. El ecosistema Apple para producción creativa profesional.</p>
     </div>
   </header>
-
-  <div class="stat-banner">
-    <div class="stat-item">
-      <div class="stat-num">20+</div>
-      <div class="stat-label">Restiradores Profesionales</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">1</div>
-      <div class="stat-label">Espacio del Modelo</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">360°</div>
-      <div class="stat-label">Iluminación Uniforme</div>
-    </div>
-  </div>
 
   <section class="lab-galeria">
     <div class="lab-galeria-header">
       <div>
         <p class="lab-galeria-label">Galería del espacio</p>
-        <h2>Conoce el taller</h2>
+        <h2>Conoce el laboratorio</h2>
       </div>
-      <span class="foto-count">4 fotos · Clic para ver en grande</span>
+      <span class="foto-count">5 fotos · Clic para ver en grande</span>
     </div>
 
     <div class="lab-grid">
-      <div class="lab-foto foto-1" data-desc="Área de restiradores — restiradores ergonómicos ajustables con bancos de madera individuales, ideales para dibujo anatómico y perspectiva técnica">
-        <img src="../img/Dibujo1.jpg" alt="Área de restiradores">
-        <div class="lab-foto-caption">Área de trabajo · Restiradores ajustables</div>
+      <div class="lab-foto foto-1" data-desc="Sala lateral — iMacs con teclados y ratones Magic de Apple en mesas café. Disposición en fila con luz natural y aire acondicionado">
+        <img src="../img/Mac6.jpg" alt="Sala lateral de iMacs">
+        <div class="lab-foto-caption">iMacs · Teclados y ratones Magic</div>
         <div class="lab-foto-hint">Ver en grande</div>
       </div>
 
-      <div class="lab-foto foto-2" data-desc="Esquema de iluminación — lámparas fluorescentes cenitales que eliminan sombras pesadas sobre el papel, junto con amplios ventanales de luz natural">
-        <img src="../img/Dibujo2.jpg" alt="Iluminación del taller">
-        <div class="lab-foto-caption">Iluminación controlada · Luz uniforme</div>
+      <div class="lab-foto foto-2" data-desc="Vista central del laboratorio — dos filas de iMacs enfrentadas con pasillo central. Mesas café y verdes, sillas azules y de madera">
+        <img src="../img/Mac2.jpg" alt="Vista central dos filas">
+        <div class="lab-foto-caption">Disposición central · Two filas enfrentadas</div>
         <div class="lab-foto-hint">Ver en grande</div>
       </div>
 
-      <div class="lab-foto foto-3" data-desc="Estación frontal — pizarrón panorámico blanco y restirador principal para demostraciones y masterclasses de profesores y expertos invitados">
-        <img src="../img/Dibujo3.jpg" alt="Estación del profesor">
-        <div class="lab-foto-caption">Estación guía · Pizarrón panorámico</div>
+      <div class="lab-foto foto-3" data-desc="Vista completa del laboratorio — iMacs en mesas amplias con luz natural de ventanales panorámicos y aire acondicionado">
+        <img src="../img/Mac3.jpg" alt="Vista completa del laboratorio">
+        <div class="lab-foto-caption">Vista completa · Luz natural</div>
         <div class="lab-foto-hint">Ver en grande</div>
       </div>
 
-      <div class="lab-foto foto-4" data-desc="Infraestructura y confort — sistema de aire acondicionado silencioso instalado en el techo para mantener una temperatura óptima durante las sesiones largas">
-        <img src="../img/Dibujo4.jpg" alt="Climatización del espacio">
-        <div class="lab-foto-caption">Climatización · Confort en sesiones largas</div>
+      <div class="lab-foto foto-4" data-desc="Sala con proyector interactivo — pizarrón panorámico, proyector en techo y cámara de seguridad. Vista desde los iMacs al frente">
+        <img src="../img/Mac4.jpg" alt="Sala con proyector">
+        <div class="lab-foto-caption">Proyector interactivo · Pizarrón</div>
+        <div class="lab-foto-hint">Ver en grande</div>
+      </div>
+
+      <div class="lab-foto foto-5" data-desc="Estación del maestro — escritorio de madera con iMac, nobreak y silla ergonómica. Control total del laboratorio desde este punto">
+        <img src="../img/Mac5.jpg" alt="Estación del maestro">
+        <div class="lab-foto-caption">Estación del maestro · Escritorio de madera</div>
         <div class="lab-foto-hint">Ver en grande</div>
       </div>
     </div>
@@ -546,30 +366,78 @@
   <section class="lab-equipo">
     <div class="lab-equipo-inner">
       <div class="lab-equipo-texto">
-        <p class="label">Infraestructura técnica</p>
+        <p class="label">Equipamiento</p>
         <h2>¿Qué hay en este espacio?</h2>
-        <p>El taller de dibujo ofrece las condiciones idóneas para dominar las bases de la anatomía, perspectiva y diseño de personajes. El mobiliario especializado y el control de luz garantizan un entorno profesional y cómodo para flujos creativos extensos.</p>
+        <p>El Laboratorio Mac está equipado con iMacs y periféricos Apple — teclados Magic Keyboard y ratones Magic Mouse. La disposición en dos filas enfrentadas permite al maestro supervisar toda la sala de un vistazo. El proyector interactivo y el pizarrón panorámico facilitan demostraciones y revisiones grupales en tiempo real.</p>
       </div>
       <ul class="equipo-lista">
-        <li>Restiradores individuales</li>
-        <li>Bancos de madera ajustables</li>
-        <li>Iluminación cenital difusa</li>
-        <li>Pizarrón panorámico blanco</li>
-        <li>Aire acondicionado integrado</li>
-        <li>Ventanas de iluminación natural</li>
-        <li>Espacio central para modelos</li>
-        <li>Tomacorrientes perimetrales</li>
-        <li>Pisos de alta resistencia</li>
-        <li>Percheros para portafolios</li>
-        <li>Doble acceso de seguridad</li>
-        <li>Ventilación asistida</li>
+        <li>iMacs Apple</li>
+        <li>Magic Keyboard</li>
+        <li>Magic Mouse</li>
+        <li>Proyector interactivo</li>
+        <li>Pizarrón panorámico</li>
+        <li>Estación del maestro</li>
+        <li>Escritorio de madera</li>
+        <li>Nobreak / UPS</li>
+        <li>2 aires acondicionados</li>
+        <li>Ventanales panorámicos</li>
+        <li>2 salas conectadas</li>
+        <li>Red LAN dedicada</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="lab-software">
+    <div class="lab-software-inner">
+      <p class="label">Software instalado</p>
+      <h2>Ecosistema Apple para producción</h2>
+      <div class="software-grid">
+        <div class="software-item">
+          <div class="software-icon">🎬</div>
+          <div class="software-nombre">Final Cut Pro</div>
+          <div class="software-categoria">Edición de video</div>
+        </div>
+        <div class="software-item">
+          <div class="software-icon">🎵</div>
+          <div class="software-nombre">Logic Pro X</div>
+          <div class="software-categoria">Producción de audio</div>
+        </div>
+        <div class="software-item">
+          <div class="software-icon">🧊</div>
+          <div class="software-nombre">Autodesk Maya</div>
+          <div class="software-categoria">Modelado 3D</div>
+        </div>
+        <div class="software-item">
+          <div class="software-icon">✨</div>
+          <div class="software-nombre">After Effects</div>
+          <div class="software-categoria">Motion graphics</div>
+        </div>
+        <div class="software-item">
+          <div class="software-icon">🎨</div>
+          <div class="software-nombre">Photoshop</div>
+          <div class="software-categoria">Edición de imagen</div>
+        </div>
+        <div class="software-item">
+          <div class="software-icon">📐</div>
+          <div class="software-nombre">Illustrator</div>
+          <div class="software-categoria">Diseño vectorial</div>
+        </div>
+        <div class="software-item">
+          <div class="software-icon">🎭</div>
+          <div class="software-nombre">Toon Boom</div>
+          <div class="software-categoria">Animación 2D</div>
+        </div>
+        <div class="software-item">
+          <div class="software-icon">🔵</div>
+          <div class="software-nombre">Blender</div>
+          <div class="software-categoria">Modelado 3D</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <div class="lab-footer">
     <p>© 2026 IADC · Pablo Guardado Chávez · Tuxtla Gutiérrez, Chiapas</p>
-    <a href="../index.html#espacios" class="btn-footer-volver">← Volver al inicio</a>
   </div>
 
   <div id="lightbox" class="lightbox">
@@ -600,11 +468,9 @@
       lightbox.classList.remove('abierto');
       document.body.style.overflow = '';
     }
-
     fotos.forEach(function(foto, i) {
       foto.addEventListener('click', function() { abrirEn(i); });
     });
-
     document.getElementById('lightbox-cerrar').addEventListener('click', cerrar);
     document.getElementById('lightbox-prev').addEventListener('click', function(e) {
       e.stopPropagation();
@@ -622,7 +488,8 @@
       if (e.key === 'ArrowRight') abrirEn((indiceActual + 1) % fotos.length);
     });
   </script>
-<!-- SCRIPT DEL CURSOR INTERACTIVO PREMIUM -->
+
+  <!-- SCRIPT DEL CURSOR INTERACTIVO PREMIUM -->
   <script>
     (function () {
       const punto = document.getElementById('cursor-punto');
@@ -633,14 +500,12 @@
       let hx = -100, hy = -100;
       let raf;
 
-      // Seguimiento de coordenadas del mouse
       document.addEventListener('mousemove', function (e) {
         mx = e.clientX; my = e.clientY;
         punto.style.left = mx + 'px';
         punto.style.top  = my + 'px';
       });
 
-      // Animación del halo con retraso inercial fluido
       function animarHalo() {
         hx += (mx - hx) * 0.11;
         hy += (my - hy) * 0.11;
@@ -650,7 +515,6 @@
       }
       animarHalo();
 
-      // Detectar elementos interactivos para expandir el cursor
       const interactivos = 'a, button, .foto, .area-card, .lab-foto, input, textarea, select, [onclick], .selector-btn, .visor-btn';
       
       function actualizarListeners() {
@@ -661,11 +525,9 @@
       }
       actualizarListeners();
       
-      // Mutación observada por si cambias componentes dinámicamente
       const observer = new MutationObserver(actualizarListeners);
       observer.observe(document.body, { childList: true, subtree: true });
 
-      // Efectos de clics mecánicos
       document.addEventListener('mousedown', function() {
         document.body.classList.add('cursor-click');
         document.body.classList.remove('cursor-hover');
@@ -674,7 +536,6 @@
         document.body.classList.remove('cursor-click');
       });
 
-      // Mostrar/Ocultar cursor si sale de la ventana del navegador
       document.addEventListener('mouseleave', function() {
         punto.style.opacity = '0'; halo.style.opacity = '0';
       });
@@ -682,7 +543,6 @@
         punto.style.opacity = '1'; halo.style.opacity = '1';
       });
 
-      // COMPATIBILIDAD CON VISOR 3D (Si existe el lienzo de Three.js en la página)
       const canvas3D = document.getElementById('visor-canvas');
       if (canvas3D) {
         canvas3D.addEventListener('mouseenter', function() {
@@ -700,6 +560,5 @@
       }
     })();
   </script>
-</body>
 </body>
 </html>
